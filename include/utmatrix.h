@@ -241,10 +241,14 @@ TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // конструктор копирования
-TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt):
-  TVector<TVector<ValType> >(mt) 
+TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt): TVector<TVector<ValType> >(mt) 
 {
-
+	s = mt.s;
+	pMatrix = new TVector <ValType>[s];
+	for (int i = 0; i < s; i++)
+	{
+		pMatrix[i] = mt.pMatrix;
+	}
 }
 
 template <class ValType> // конструктор преобразования типа
@@ -264,6 +268,17 @@ bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
+	if (mt.s != s)
+	{
+		delete[] pMatrix;
+		s = mt.s;
+		pMatrix=new TVector <ValType>[mt.s]
+	}
+	for (int i = 0; i < s; i++)
+	{
+		pMatrix[i] = mt.pMatrix[i];
+	}
+	return *this;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сложение
