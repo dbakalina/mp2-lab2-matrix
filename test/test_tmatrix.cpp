@@ -26,27 +26,36 @@ TEST(TMatrix, can_create_copied_matrix)
 
 TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+  TMatrix<int> m1(13);
+  for (int i = 0; i < m1.GetSize(); i++)
+  {
+	  for (int j = i; j < m1.GetSize(); j++)
+	  {
+		  m1[i][j] = i + j;
+	  }
+  }
+  TMatrix<int> m2(m1);
+  EXPECT_EQ(m1, m2);
 }
 
 TEST(TMatrix, copied_matrix_has_its_own_memory)
 {
-  ADD_FAILURE();
+	ADD_FAILURE();
 }
 
 TEST(TMatrix, can_get_size)
 {
-  ADD_FAILURE();
+	ADD_FAILURE();
 }
 
 TEST(TMatrix, can_set_and_get_element)
 {
-  ADD_FAILURE();
+	ADD_FAILURE();
 }
 
 TEST(TMatrix, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+	ADD_FAILURE();
 }
 
 TEST(TMatrix, throws_when_set_element_with_too_large_index)
@@ -106,6 +115,8 @@ TEST(TMatrix, can_subtract_matrices_with_equal_size)
 
 TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 {
-  ADD_FAILURE();
+	TMatrix<int> m1(7);
+	TMatrix<int> m2(8);
+	ASSERT_ANY_THROW(m1 - m2);
 }
 

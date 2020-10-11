@@ -62,9 +62,9 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-	if (s<0 || s> MAX_VECTOR_SIZE)
+	if (s<0 || MAX_VECTOR_SIZE < s )
 	{
-		throw s;
+		throw exception ("Wrong parameters");
 	}
 	Size = s;
 	StartIndex = si;
@@ -152,8 +152,8 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 		if (Size != v.Size)
 		{
 			delete[] pVector;
-			pVector = new ValType [Size];
 			Size = v.Size;
+			pVector = new ValType [Size];
 			StartIndex = v.StartIndex;
 		}
 		for (int i = 0; i < Size; i++)
@@ -282,11 +282,11 @@ TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
 }
 
 template <class ValType> // сравнение
-bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
+bool TMatrix<ValType>::operator==(const TMatrix<ValType> &m) const
 {
-	if (this == &m)
+	if (this != &m)
 	{
-		return true;
+		return false;
 	}
 	else
 	{
@@ -294,9 +294,9 @@ bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 		{
 			return false;
 		}
-		for (int i = 0; i < Size; i++)
+		for (int i = 0; i < Size - StartIndex; i++)
 		{
-			if (pVector[i] != m.pVector)
+			if (pVector[i] != m.pVector[i])
 			{
 				return false;
 			}
