@@ -126,6 +126,7 @@ TEST(TVector, compare_equal_vectors_return_true)
 TEST(TVector, compare_vector_with_itself_return_true)
 {
 	TVector <int> a(5);
+
 	EXPECT_EQ(true, a == a);
 }
 
