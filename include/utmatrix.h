@@ -64,6 +64,7 @@ TVector<ValType>::TVector(int s, int si)
 {
 	if ((s < 0) || (si < 0) || (s > MAX_VECTOR_SIZE) || (si > MAX_VECTOR_SIZE))
 		throw "Not available Size or StartIndex";
+
 	else
 	{
 		Size = s;
@@ -341,6 +342,7 @@ bool TMatrix<ValType>::operator==(const TMatrix<ValType> &m) const
 	}
 	else
 	{*/
+
 		if (Size != m.Size)
 		{
 			return false;
@@ -365,6 +367,7 @@ bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 	}
 	else
 	{*/
+
 		if (Size != mt.Size)
 		{
 			return true;
